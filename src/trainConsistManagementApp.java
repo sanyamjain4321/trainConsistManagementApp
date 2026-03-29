@@ -1,52 +1,30 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class trainConsistManagementApp {
 
     public static void main(String[] args) {
 
-        // ================= UC1 =================
         System.out.println("========================================");
-        System.out.println("=== Train Consist Management App ===");
+        System.out.println("UC5 - Preserve Insertion Order of Bogies");
         System.out.println("========================================\n");
 
-        List<String> trainConsist = new ArrayList<>();
-
-        System.out.println("Train initialized successfully...");
-        System.out.println("Initial Bogie Count : " + trainConsist.size());
-        System.out.println("Current Train Consist : " + trainConsist);
-        System.out.println("\nSystem ready for operations...\n");
-
-        // ================= UC2 =================
-        System.out.println("========================================");
-        System.out.println("UC2 - Add Passenger Bogies to Train");
-        System.out.println("========================================\n");
-
-        // Create passenger bogie list
-        List<String> passengerBogies = new ArrayList<>();
+        // Create LinkedHashSet
+        Set<String> trainFormation = new LinkedHashSet<>();
 
         // Add bogies
-        passengerBogies.add("Sleeper");
-        passengerBogies.add("AC Chair");
-        passengerBogies.add("First Class");
+        trainFormation.add("Engine");
+        trainFormation.add("Sleeper");
+        trainFormation.add("Cargo");
+        trainFormation.add("Guard");
+        trainFormation.add("Sleeper"); // duplicate (ignored)
 
-        System.out.println("After Adding Bogies:");
-        System.out.println("Passenger Bogies : " + passengerBogies + "\n");
+        System.out.println("Final Train Formation:");
+        System.out.println(trainFormation + "\n");
 
-        // Remove AC Chair
-        passengerBogies.remove("AC Chair");
+        System.out.println("Note:");
+        System.out.println("LinkedHashSet preserves insertion order and removes duplicates automatically.\n");
 
-        System.out.println("After Removing 'AC Chair':");
-        System.out.println("Passenger Bogies : " + passengerBogies + "\n");
-
-        // Check if Sleeper exists
-        System.out.println("Checking if 'Sleeper' exists:");
-        System.out.println("Contains Sleeper? : " + passengerBogies.contains("Sleeper") + "\n");
-
-        // Final list
-        System.out.println("Final Train Passenger Consist:");
-        System.out.println(passengerBogies + "\n");
-
-        System.out.println("UC2 operations completed successfully...");
+        System.out.println("UC5 formation setup completed...");
     }
 }
