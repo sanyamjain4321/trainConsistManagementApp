@@ -1,52 +1,42 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public class trainConsistManagementApp {
+public class TrainConsistManagementApp {
+
+    static class Bogie {
+        String name;
+        int capacity;
+
+        Bogie(String name, int capacity) {
+            this.name = name;
+            this.capacity = capacity;
+        }
+    }
 
     public static void main(String[] args) {
 
-        // ================= UC1 =================
         System.out.println("========================================");
-        System.out.println("=== Train Consist Management App ===");
+        System.out.println("UC8 - Filter Passenger Bogies Using Streams");
         System.out.println("========================================\n");
 
-        List<String> trainConsist = new ArrayList<>();
+        // Create list (same as UC7)
+        List<Bogie> bogies = new ArrayList<>();
 
-        System.out.println("Train initialized successfully...");
-        System.out.println("Initial Bogie Count : " + trainConsist.size());
-        System.out.println("Current Train Consist : " + trainConsist);
-        System.out.println("\nSystem ready for operations...\n");
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 56));
+        bogies.add(new Bogie("First Class", 24));
+        bogies.add(new Bogie("General", 90));
 
-        // ================= UC2 =================
-        System.out.println("========================================");
-        System.out.println("UC2 - Add Passenger Bogies to Train");
-        System.out.println("========================================\n");
+        // Filter bogies with capacity > 60
+        List<Bogie> filtered = bogies.stream()
+                .filter(b -> b.capacity > 60)
+                .collect(Collectors.toList());
 
-        // Create passenger bogie list
-        List<String> passengerBogies = new ArrayList<>();
+        System.out.println("Filtered Bogies (Capacity > 60):");
+        for (Bogie b : filtered) {
+            System.out.println(b.name + " -> " + b.capacity);
+        }
 
-        // Add bogies
-        passengerBogies.add("Sleeper");
-        passengerBogies.add("AC Chair");
-        passengerBogies.add("First Class");
-
-        System.out.println("After Adding Bogies:");
-        System.out.println("Passenger Bogies : " + passengerBogies + "\n");
-
-        // Remove AC Chair
-        passengerBogies.remove("AC Chair");
-
-        System.out.println("After Removing 'AC Chair':");
-        System.out.println("Passenger Bogies : " + passengerBogies + "\n");
-
-        // Check if Sleeper exists
-        System.out.println("Checking if 'Sleeper' exists:");
-        System.out.println("Contains Sleeper? : " + passengerBogies.contains("Sleeper") + "\n");
-
-        // Final list
-        System.out.println("Final Train Passenger Consist:");
-        System.out.println(passengerBogies + "\n");
-
-        System.out.println("UC2 operations completed successfully...");
+        System.out.println("\nUC8 filtering completed...");
     }
 }
