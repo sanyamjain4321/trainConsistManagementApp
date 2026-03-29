@@ -1,52 +1,46 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
+class Bogie {
+    String name;
+    int capacity;
+
+    Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+}
 
 public class trainConsistManagementApp {
 
     public static void main(String[] args) {
 
-        // ================= UC1 =================
         System.out.println("========================================");
-        System.out.println("=== Train Consist Management App ===");
+        System.out.println("UC7 - Sort Bogies by Capacity (Comparator)");
         System.out.println("========================================\n");
 
-        List<String> trainConsist = new ArrayList<>();
+        // Create list of bogies
+        List<Bogie> bogies = new ArrayList<>();
 
-        System.out.println("Train initialized successfully...");
-        System.out.println("Initial Bogie Count : " + trainConsist.size());
-        System.out.println("Current Train Consist : " + trainConsist);
-        System.out.println("\nSystem ready for operations...\n");
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 56));
+        bogies.add(new Bogie("First Class", 24));
+        bogies.add(new Bogie("General", 90));
 
-        // ================= UC2 =================
-        System.out.println("========================================");
-        System.out.println("UC2 - Add Passenger Bogies to Train");
-        System.out.println("========================================\n");
+        // Before Sorting
+        System.out.println("Before Sorting:");
+        for (Bogie b : bogies) {
+            System.out.println(b.name + " -> " + b.capacity);
+        }
 
-        // Create passenger bogie list
-        List<String> passengerBogies = new ArrayList<>();
+        // Sort using Comparator (by capacity)
+        bogies.sort(Comparator.comparingInt(b -> b.capacity));
 
-        // Add bogies
-        passengerBogies.add("Sleeper");
-        passengerBogies.add("AC Chair");
-        passengerBogies.add("First Class");
+        // After Sorting
+        System.out.println("\nAfter Sorting by Capacity:");
+        for (Bogie b : bogies) {
+            System.out.println(b.name + " -> " + b.capacity);
+        }
 
-        System.out.println("After Adding Bogies:");
-        System.out.println("Passenger Bogies : " + passengerBogies + "\n");
-
-        // Remove AC Chair
-        passengerBogies.remove("AC Chair");
-
-        System.out.println("After Removing 'AC Chair':");
-        System.out.println("Passenger Bogies : " + passengerBogies + "\n");
-
-        // Check if Sleeper exists
-        System.out.println("Checking if 'Sleeper' exists:");
-        System.out.println("Contains Sleeper? : " + passengerBogies.contains("Sleeper") + "\n");
-
-        // Final list
-        System.out.println("Final Train Passenger Consist:");
-        System.out.println(passengerBogies + "\n");
-
-        System.out.println("UC2 operations completed successfully...");
+        System.out.println("\nUC7 sorting completed...");
     }
 }
