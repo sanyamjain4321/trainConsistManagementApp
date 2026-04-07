@@ -1,29 +1,47 @@
-import java.util.Arrays;
-
 public class TrainManagementApp {
+
+    // Linear Search Method
+    public static boolean linearSearch(String[] arr, String key) {
+
+        for (int i = 0; i < arr.length; i++) {
+
+            // Compare using equals()
+            if (arr[i].equals(key)) {
+                return true; // found → stop early
+            }
+        }
+
+        return false; // not found
+    }
 
     public static void main(String[] args) {
 
-        // Array of bogie names
-        String[] bogieNames = {
-                "Sleeper", "AC Chair", "First Class", "General", "Luxury"
-        };
+        // Array of bogie IDs
+        String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
 
-        System.out.println("=======================================");
-        System.out.println("UC17 - Sort Bogie Names Using Arrays.sort()");
-        System.out.println("=======================================\n");
+        // Search key
+        String searchId = "BG309";
 
-        // Original array
-        System.out.println("Original Bogie Names:");
-        System.out.println(Arrays.toString(bogieNames));
+        System.out.println("======================================");
+        System.out.println("UC18 - Linear Search for Bogie ID");
+        System.out.println("======================================\n");
 
-        // Built-in sorting (Alphabetical)
-        Arrays.sort(bogieNames);
+        System.out.println("Available Bogie IDs:");
+        for (String id : bogieIds) {
+            System.out.println(id);
+        }
 
-        // Sorted array
-        System.out.println("\nSorted Bogie Names (Alphabetical):");
-        System.out.println(Arrays.toString(bogieNames));
+        // Perform search
+        boolean found = linearSearch(bogieIds, searchId);
 
-        System.out.println("\nUC17 sorting completed...");
+        System.out.println();
+
+        if (found) {
+            System.out.println("Bogie " + searchId + " found in train consist.");
+        } else {
+            System.out.println("Bogie " + searchId + " NOT found in train consist.");
+        }
+
+        System.out.println("\nUC18 search completed...");
     }
 }
