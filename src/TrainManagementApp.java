@@ -1,13 +1,25 @@
 public class TrainManagementApp {
 
-    // Linear Search Method
-    public static boolean linearSearch(String[] arr, String key) {
+    // Binary Search Method
+    public static boolean binarySearch(String[] arr, String key) {
 
-        for (int i = 0; i < arr.length; i++) {
+        int low = 0;
+        int high = arr.length - 1;
 
-            // Compare using equals()
-            if (arr[i].equals(key)) {
-                return true; // found → stop early
+        while (low <= high) {
+
+            int mid = (low + high) / 2;
+
+            int comparison = key.compareTo(arr[mid]);
+
+            if (comparison == 0) {
+                return true; // found
+            }
+            else if (comparison < 0) {
+                high = mid - 1; // search left half
+            }
+            else {
+                low = mid + 1; // search right half
             }
         }
 
@@ -16,23 +28,23 @@ public class TrainManagementApp {
 
     public static void main(String[] args) {
 
-        // Array of bogie IDs
+        // Sorted array (IMPORTANT for Binary Search)
         String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
 
         // Search key
         String searchId = "BG309";
 
         System.out.println("======================================");
-        System.out.println("UC18 - Linear Search for Bogie ID");
+        System.out.println("UC19 - Binary Search for Bogie ID");
         System.out.println("======================================\n");
 
-        System.out.println("Available Bogie IDs:");
+        System.out.println("Available Bogie IDs (Sorted):");
         for (String id : bogieIds) {
             System.out.println(id);
         }
 
-        // Perform search
-        boolean found = linearSearch(bogieIds, searchId);
+        // Perform binary search
+        boolean found = binarySearch(bogieIds, searchId);
 
         System.out.println();
 
@@ -42,6 +54,6 @@ public class TrainManagementApp {
             System.out.println("Bogie " + searchId + " NOT found in train consist.");
         }
 
-        System.out.println("\nUC18 search completed...");
+        System.out.println("\nUC19 search completed...");
     }
 }
