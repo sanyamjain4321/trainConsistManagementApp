@@ -1,7 +1,12 @@
 public class TrainManagementApp {
 
-    // Binary Search Method
+    // Binary Search with Defensive Check
     public static boolean binarySearch(String[] arr, String key) {
+
+        // UC20: Fail-Fast Validation
+        if (arr == null || arr.length == 0) {
+            throw new IllegalStateException("Cannot perform search: Train has no bogies.");
+        }
 
         int low = 0;
         int high = arr.length - 1;
@@ -13,47 +18,43 @@ public class TrainManagementApp {
             int comparison = key.compareTo(arr[mid]);
 
             if (comparison == 0) {
-                return true; // found
+                return true;
             }
             else if (comparison < 0) {
-                high = mid - 1; // search left half
+                high = mid - 1;
             }
             else {
-                low = mid + 1; // search right half
+                low = mid + 1;
             }
         }
 
-        return false; // not found
+        return false;
     }
 
     public static void main(String[] args) {
 
-        // Sorted array (IMPORTANT for Binary Search)
-        String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
+        // Change this to test different cases
+        String[] bogieIds = {};
 
-        // Search key
         String searchId = "BG309";
 
-        System.out.println("======================================");
-        System.out.println("UC19 - Binary Search for Bogie ID");
-        System.out.println("======================================\n");
+        System.out.println("==============================================");
+        System.out.println("UC20 - Exception Handling During Search");
+        System.out.println("==============================================\n");
 
-        System.out.println("Available Bogie IDs (Sorted):");
-        for (String id : bogieIds) {
-            System.out.println(id);
+        try {
+            boolean found = binarySearch(bogieIds, searchId);
+
+            if (found) {
+                System.out.println("Bogie " + searchId + " found in train consist.");
+            } else {
+                System.out.println("Bogie " + searchId + " NOT found in train consist.");
+            }
+
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
         }
 
-        // Perform binary search
-        boolean found = binarySearch(bogieIds, searchId);
-
-        System.out.println();
-
-        if (found) {
-            System.out.println("Bogie " + searchId + " found in train consist.");
-        } else {
-            System.out.println("Bogie " + searchId + " NOT found in train consist.");
-        }
-
-        System.out.println("\nUC19 search completed...");
+        System.out.println("\nUC20 operation completed...");
     }
 }
