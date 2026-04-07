@@ -1,8 +1,10 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
-public class TrainConsistManagementApp {
+class TrainConsistManagementApp {
 
+    // Make this static
     static class Bogie {
         String name;
         int capacity;
@@ -19,7 +21,7 @@ public class TrainConsistManagementApp {
         System.out.println("UC8 - Filter Passenger Bogies Using Streams");
         System.out.println("========================================\n");
 
-        // Create list (same as UC7)
+        // Create list
         List<Bogie> bogies = new ArrayList<>();
 
         bogies.add(new Bogie("Sleeper", 72));
